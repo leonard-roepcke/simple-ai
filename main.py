@@ -1,16 +1,8 @@
 import time
-import neuron
+import neuronalNet
 print("init ai at: " + str(time.time()))
 
-b = neuron.inputNeuron()
-a = neuron.inputNeuron()
-
-a.setValue(1.0)
-b.setValue(0.0)
-
-n = neuron.neuron([a, b])
-print(n.getValue()) 
-
-for i in range(50):
-    n.mutate()
-    print(n.getValue())
+n1 = neuronalNet.NeuronalNet()
+for i in range(100):
+    n1.mutate()
+    print(n1.run([1, 0]))
