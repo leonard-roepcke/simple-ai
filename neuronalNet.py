@@ -1,4 +1,11 @@
 import neuron
+import math
+
+def softmax(values):
+    exp_values = [math.exp(v) for v in values]
+    total = sum(exp_values)
+    return [v / total for v in exp_values]
+
 
 class NeuronalNet:
     def __init__(self, inputSize:int, outputSize, hidenLayer, hidenSize):
@@ -20,9 +27,10 @@ class NeuronalNet:
         
     def run(self, input):
 
-        [inputNeuron.setValue(i) for i, inputNeuron in zip(input, self.inputs)]
+        for i, inputNeuron in zip(input, self.inputs):
+            inputNeuron.setValue(i)
 
-        return [output.getFloatValue() for output in self.outputs]
+        return softmax([output.getFloatValue() for output in self.outputs])
 
     def mutate(self):
         for layer in self.hidenlayer:
