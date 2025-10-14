@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import random
 
 class baseNeuron(ABC):
     @abstractmethod
@@ -21,6 +22,10 @@ class neuron(baseNeuron):
             total += n.getValue() * self.inputWeights[i]
 
         return 1.0 if total >= self.trigger else 0.0  # explizit 0/1 zurückgeben
+    
+    def mutate(self, amount=0.5):
+        self.inputWeights = [w + random.random() * 2 * amount - amount for w in self.inputWeights]
+
 
 
 class inputNeuron(baseNeuron):

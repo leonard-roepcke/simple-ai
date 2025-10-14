@@ -2,8 +2,15 @@ import time
 import neuron
 print("init ai at: " + str(time.time()))
 
-inputNeuron = neuron.inputNeuron()
-outputNeuron = neuron.neuron([inputNeuron])
+b = neuron.inputNeuron()
+a = neuron.inputNeuron()
 
-inputNeuron.setValue(1)
-print(outputNeuron.getValue)
+a.setValue(1.0)
+b.setValue(0.0)
+
+n = neuron.neuron([a, b])
+print(n.getValue()) 
+
+for i in range(50):
+    n.mutate()
+    print(n.getValue())
