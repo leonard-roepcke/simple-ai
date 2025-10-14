@@ -25,4 +25,5 @@ class NeuronalNet:
         return [output.getValue() for output in self.outputs]
 
     def mutate(self):
-        self.n.mutate()
+        #self.n.mutate()
+        pass
