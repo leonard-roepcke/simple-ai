@@ -6,15 +6,23 @@ class NeuronalNet:
         # self.a = neuron.inputNeuron()
         # self.n = neuron.neuron([self.a, self.b])
 
-        self.inputs = [neuron.inputNeuron()] * inputSize
+        self.inputs = [neuron.inputNeuron() for _ in range(inputSize)]
         self.hidenlayer = []
-        self.outputs = [neuron.neuron([])] * outputSize #hier kommt noch was
+        for layer in range(hidenLayer):
+            self.hidenlayer.append([])
+            for _ in range(hidenLayer):
+                if layer == 0:
+                    self.hidenlayer[-1].append(neuron.neuron(self.inputs))
+                else:
+                    self.hidenlayer[-1].append(neuron.neuron(self.hidenlayer[-2]))
+        self.outputs = [neuron.neuron(self.hidenlayer[-1])] * outputSize
 
         
-    def run(self, input = [0, 0]):
-        self.a.setValue(input[0])
-        self.b.setValue(input[1])
-        return self.n.getValue()
+    def run(self, input):
+
+        [inputNeuron.setValue(i) for i, inputNeuron in zip(input, self.inputs)]
+
+        return [output.getValue() for output in self.outputs]
 
     def mutate(self):
         self.n.mutate()
