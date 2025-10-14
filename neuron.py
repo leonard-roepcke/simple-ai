@@ -19,9 +19,8 @@ class neuron(baseNeuron):
         total = 0.0
         for i, n in enumerate(self.inputNeurons):
             total += n.getValue() * self.inputWeights[i]
-        
-        avg = total / len(self.inputNeurons)
-        return 1.0 if avg >= self.trigger else 0.0  # explizit 0/1 zurückgeben
+
+        return 1.0 if total >= self.trigger else 0.0  # explizit 0/1 zurückgeben
 
 
 class inputNeuron(baseNeuron):
