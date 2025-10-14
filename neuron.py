@@ -17,11 +17,14 @@ class neuron(baseNeuron):
         for i, n in enumerate(inputNeurons):
             ans += n.getValue() * self.inputWeights[i]
             i += 1
-        return ans / i
+        return ans / i >= self.trigger
     
 class inputNeuron(baseNeuron):
-    def __init__(self, value: float):
-        self.value = value
+    def __init__(self):
+        self.value = 0.0
     
     def getValue(self):
         return self.value
+    
+    def setValue(self,value: float):
+        self.value = value
