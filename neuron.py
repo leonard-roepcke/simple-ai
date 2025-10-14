@@ -5,20 +5,25 @@ class baseNeuron(ABC):
     def getValue(self) -> float:
         pass
 
+
 class neuron(baseNeuron):
-    def __init__(self):
+    def __init__(self, connectedNeurons: list['baseNeuron']):
         self.trigger: float = 0.5
-        self.inputNeurons: list[baseNeuron] = []
-        self.inputWeights: list[float] = []
+        self.inputNeurons: list[baseNeuron] = connectedNeurons
+        self.inputWeights: list[float] = [1.0] * len(connectedNeurons)
     
     def getValue(self):
-        ans = 0
-        i = 0
-        for i, n in enumerate(inputNeurons):
-            ans += n.getValue() * self.inputWeights[i]
-            i += 1
-        return ans / i >= self.trigger
-    
+        if not self.inputNeurons:  # Vermeidung Division durch 0
+            return 0.0
+        
+        total = 0.0
+        for i, n in enumerate(self.inputNeurons):
+            total += n.getValue() * self.inputWeights[i]
+        
+        avg = total / len(self.inputNeurons)
+        return 1.0 if avg >= self.trigger else 0.0  # explizit 0/1 zurückgeben
+
+
 class inputNeuron(baseNeuron):
     def __init__(self):
         self.value = 0.0
@@ -26,5 +31,5 @@ class inputNeuron(baseNeuron):
     def getValue(self):
         return self.value
     
-    def setValue(self,value: float):
+    def setValue(self, value: float):
         self.value = value
