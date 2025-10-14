@@ -1,5 +1,10 @@
 from abc import ABC, abstractmethod
 import random
+import math
+
+
+def sigmoid(value):
+    return 1 / (1 + math.exp(-value))
 
 class baseNeuron(ABC):
     @abstractmethod
@@ -23,6 +28,16 @@ class neuron(baseNeuron):
 
         return 1.0 if total >= self.trigger else 0.0  # explizit 0/1 zurückgeben
     
+    def getFloatValue(self):
+        if not self.inputNeurons:  # Vermeidung Division durch 0
+            return 0.0
+        
+        total = 0.0
+        for i, n in enumerate(self.inputNeurons):
+            total += n.getValue() * self.inputWeights[i]
+
+        return total
+    
     def mutate(self, amount=0.5):
         self.inputWeights = [w + random.random() * 2 * amount - amount for w in self.inputWeights]
 
@@ -37,3 +52,7 @@ class inputNeuron(baseNeuron):
     
     def setValue(self, value: float):
         self.value = value
+
+
+
+

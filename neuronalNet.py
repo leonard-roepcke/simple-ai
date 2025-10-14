@@ -22,7 +22,7 @@ class NeuronalNet:
 
         [inputNeuron.setValue(i) for i, inputNeuron in zip(input, self.inputs)]
 
-        return [output.getValue() for output in self.outputs]
+        return [output.getFloatValue() for output in self.outputs]
 
     def mutate(self):
         for layer in self.hidenlayer:
