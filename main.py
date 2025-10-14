@@ -1,8 +1,16 @@
 import time
-import neuronalNet
+import evolotion
 print("init ai at: " + str(time.time()))
 
-n1 = neuronalNet.NeuronalNet(2, 2, 2, 4)
-for _ in range(10):
-    n1.mutate()
-    print(n1.run([0, 1]))
+evo = evolotion.Evolution(
+    values= [
+        [[0, 0],[0, 1]],
+        [[0, 1],[1, 0]],
+        [[1, 0],[1, 0]],
+        [[1, 1],[0, 1]],
+    ],
+    spread=0.8,
+    defosion=0.97
+    )
+
+evo.run(rounds=10000, population=20)

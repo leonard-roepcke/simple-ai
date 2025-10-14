@@ -8,10 +8,12 @@ def softmax(values):
 
 
 class NeuronalNet:
-    def __init__(self, inputSize:int, outputSize, hidenLayer, hidenSize):
+    def __init__(self, inputSize:int, outputSize, hidenLayer, hidenSize, mutation_rate=0.6):
         # self.b = neuron.inputNeuron()
         # self.a = neuron.inputNeuron()
         # self.n = neuron.neuron([self.a, self.b])
+        self.score = -float('inf')
+        self.mutation_rate = mutation_rate
 
         self.inputs = [neuron.inputNeuron() for _ in range(inputSize)]
         self.hidenlayer = []
@@ -36,7 +38,7 @@ class NeuronalNet:
     def mutate(self):
         for layer in self.hidenlayer:
             for neuron in layer:
-                neuron.mutate()
+                neuron.mutate(self.mutation_rate)
         
         for neuron in self.outputs:
-            neuron.mutate()
+            neuron.mutate(self.mutation_rate)

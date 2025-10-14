@@ -38,9 +38,9 @@ class neuron(baseNeuron):
 
         return total
     
-    def mutate(self, amount=0.5):
-        self.inputWeights = [w + random.random() * 2 * amount - amount for w in self.inputWeights]
-
+    def mutate(self, amount=0.3):
+        self.inputWeights = [w + random.uniform(-amount, amount) for w in self.inputWeights]
+        self.trigger += random.uniform(-amount, amount) # ist anscheinend von bis das uniform
 
 
 class inputNeuron(baseNeuron):
