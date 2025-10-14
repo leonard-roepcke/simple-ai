@@ -25,5 +25,9 @@ class NeuronalNet:
         return [output.getValue() for output in self.outputs]
 
     def mutate(self):
-        #self.n.mutate()
-        pass
+        for layer in self.hidenlayer:
+            for neuron in layer:
+                neuron.mutate()
+        
+        for neuron in self.outputs:
+            neuron.mutate()
