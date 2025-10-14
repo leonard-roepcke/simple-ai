@@ -22,7 +22,8 @@ class NeuronalNet:
                     self.hidenlayer[-1].append(neuron.neuron(self.inputs))
                 else:
                     self.hidenlayer[-1].append(neuron.neuron(self.hidenlayer[-2]))
-        self.outputs = [neuron.neuron(self.hidenlayer[-1])] * outputSize
+        self.outputs = [neuron.neuron(self.hidenlayer[-1]) for _ in range(outputSize)]
+
 
         
     def run(self, input):
