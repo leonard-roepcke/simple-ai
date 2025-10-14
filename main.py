@@ -13,4 +13,4 @@ evo = evolotion.Evolution(
     defosion=0.97
     )
 
-evo.run(rounds=10000, population=20)
+evo.run(rounds=100, population=20)
