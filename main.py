@@ -9,8 +9,10 @@ evo = evolotion.Evolution(
         [[1, 0],[1, 0]],
         [[1, 1],[0, 1]],
     ],
-    spread=0.8,
-    defosion=0.97
+    spread=0.4,
+    defosion=0.94,
+    hidenlayer=4,
+    hidenSize=3
     )
 
-evo.run(rounds=100, population=20)
+evo.run(rounds=1000, population=20)
