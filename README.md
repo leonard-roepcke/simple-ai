@@ -58,4 +58,4 @@ This approach is inspired by **genetic algorithms** and **neuroevolution**, but 
 
 ---
 
-disclaimer: README.md was writen by ai
+disclaimer: README.md was written by AI
