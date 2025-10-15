@@ -1,7 +1,3 @@
-Hier ist ein Vorschlag für dein **README.md**-File (80 %, leicht, 5-10 min):
-
----
-
 # simple-ai
 
 **simple-ai** is a small console-based Python experiment that simulates **evolutionary learning** without using matrices or external libraries.
